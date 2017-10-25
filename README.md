@@ -1,6 +1,6 @@
-# German Traffic Sign Recognition
+# Traffic Sign Classifier
 
-## Building a Traffic Sign Classifier
+## Goal
 
 The goals / steps of this project were the following:
 
@@ -14,14 +14,6 @@ The goals / steps of this project were the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/visualization.jpg "Visualization"
-[image2]: ./examples/grayscale.jpg "Grayscaling"
-[image3]: ./examples/random_noise.jpg "Random Noise"
-[image4]: ./examples/placeholder.png "Traffic Sign 1"
-[image5]: ./examples/placeholder.png "Traffic Sign 2"
-[image6]: ./examples/placeholder.png "Traffic Sign 3"
-[image7]: ./examples/placeholder.png "Traffic Sign 4"
-[image8]: ./examples/placeholder.png "Traffic Sign 5"
 [sign01]: ./personal-photos/traffic-sign-01.png "Traffic Sign 01"
 [sign02]: ./personal-photos/traffic-sign-02.png "Traffic Sign 02"
 [sign03]: ./personal-photos/traffic-sign-03.png "Traffic Sign 03"
@@ -44,9 +36,9 @@ The goals / steps of this project were the following:
 [sign20]: ./personal-photos/traffic-sign-20.png "Traffic Sign 20"
 
 
-##
+## Overview
 
-You're reading it! and here is a link to my [project code](https://github.com/udacity/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb)
+You're reading it! and here is a link to my [project code](https://github.com/laurentgauthier/p-traffic-signs/blob/master/Traffic_Sign_Classifier.html)
 
 ## Data Set Summary & Exploration
 
@@ -132,18 +124,21 @@ If a well known architecture was chosen:
 * How does the final model's accuracy on the training, validation and test set provide evidence that the model is working well?
  
 
-###Test a Model on New Images
+### Test the model on new images
 
-####1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
+As I work in Germany I took the opportunity of my morning and evening walks from and to work to
+take some pictures using my cell phone.
 
-Here are five German traffic signs that I found on the web:
+As can be noticed below the lighting conditions do vary greatly and I made sure for noghtly shot
+to take some pictures with flash enabled.
 
 ![alt text][sign01] ![alt text][sign02] ![alt text][sign03] ![alt text][sign04] ![alt text][sign05] 
 ![alt text][sign06] ![alt text][sign07] ![alt text][sign08] ![alt text][sign09] ![alt text][sign10] 
 ![alt text][sign11] ![alt text][sign12] ![alt text][sign13] ![alt text][sign14] ![alt text][sign15] 
 ![alt text][sign16] ![alt text][sign17] ![alt text][sign18] ![alt text][sign19] ![alt text][sign20] 
 
-The first image might be difficult to classify because ...
+In total I gathered pictures of 20 traffic signs which I cropped and resized to the expected 32x32x3
+image size using Gimp and ImageMagick. No other processing was done on the images.
 
 ####2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
 
