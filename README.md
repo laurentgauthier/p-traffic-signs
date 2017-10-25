@@ -22,6 +22,27 @@ The goals / steps of this project were the following:
 [image6]: ./examples/placeholder.png "Traffic Sign 3"
 [image7]: ./examples/placeholder.png "Traffic Sign 4"
 [image8]: ./examples/placeholder.png "Traffic Sign 5"
+[sign01]: ./personal-photos/traffic-sign-01.png "Traffic Sign 01"
+[sign02]: ./personal-photos/traffic-sign-02.png "Traffic Sign 02"
+[sign03]: ./personal-photos/traffic-sign-03.png "Traffic Sign 03"
+[sign04]: ./personal-photos/traffic-sign-04.png "Traffic Sign 04"
+[sign05]: ./personal-photos/traffic-sign-05.png "Traffic Sign 05"
+[sign06]: ./personal-photos/traffic-sign-06.png "Traffic Sign 06"
+[sign07]: ./personal-photos/traffic-sign-07.png "Traffic Sign 07"
+[sign08]: ./personal-photos/traffic-sign-08.png "Traffic Sign 08"
+[sign09]: ./personal-photos/traffic-sign-09.png "Traffic Sign 09"
+[sign10]: ./personal-photos/traffic-sign-10.png "Traffic Sign 10"
+[sign11]: ./personal-photos/traffic-sign-11.png "Traffic Sign 11"
+[sign12]: ./personal-photos/traffic-sign-12.png "Traffic Sign 12"
+[sign13]: ./personal-photos/traffic-sign-13.png "Traffic Sign 13"
+[sign14]: ./personal-photos/traffic-sign-14.png "Traffic Sign 14"
+[sign15]: ./personal-photos/traffic-sign-15.png "Traffic Sign 15"
+[sign16]: ./personal-photos/traffic-sign-16.png "Traffic Sign 16"
+[sign17]: ./personal-photos/traffic-sign-17.png "Traffic Sign 17"
+[sign18]: ./personal-photos/traffic-sign-18.png "Traffic Sign 18"
+[sign19]: ./personal-photos/traffic-sign-19.png "Traffic Sign 19"
+[sign20]: ./personal-photos/traffic-sign-20.png "Traffic Sign 20"
+
 
 ##
 
@@ -117,8 +138,10 @@ If a well known architecture was chosen:
 
 Here are five German traffic signs that I found on the web:
 
-![alt text][image4] ![alt text][image5] ![alt text][image6] 
-![alt text][image7] ![alt text][image8]
+![alt text][sign01] ![alt text][sign02] ![alt text][sign03] ![alt text][sign04] ![alt text][sign05] 
+![alt text][sign06] ![alt text][sign07] ![alt text][sign08] ![alt text][sign09] ![alt text][sign10] 
+![alt text][sign11] ![alt text][sign12] ![alt text][sign13] ![alt text][sign14] ![alt text][sign15] 
+![alt text][sign16] ![alt text][sign17] ![alt text][sign18] ![alt text][sign19] ![alt text][sign20] 
 
 The first image might be difficult to classify because ...
 
