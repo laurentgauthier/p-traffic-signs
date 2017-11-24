@@ -126,6 +126,11 @@ and applying the following operations to them:
 * Create slightly zoomed in and zoomed out copies
 * Create randomly rotated images, with a few degrees of rotation range
 
+The traffic sign classes which are less represented likely need to be the
+focus of this data set augmentation. It can be observed that the error
+rate for these traffic sign classes is higher than for the others, so they
+are likely to benefit from this data set augmentation.
+
 ### Model architecture
 
 For the model I started from the LeNet model, and evolved from there until
@@ -179,21 +184,24 @@ The final model accuracy results were:
 To break the glass ceiling sitting at around 90% of accuracy the
 following adjustments appear to have been critical:
 
+* Significantly increase the number of filters of the first convolutional
+  layer, to match the change in order of magnitude of the classes to
+  be predicted.
+* Increase the size of the fully connected layers at the back-end of the
+  network in order again to match the number of classes.
+
 Getting to this has been quite a learning experience as it took me
 hundreds of experiments to start gaining an understanding of which
 parameters really drove the model performance.
 
-If an iterative approach was chosen:
-* What was the first architecture that was tried and why was it chosen?
-* What were some problems with the initial architecture?
-* How was the architecture adjusted and why was it adjusted? Typical adjustments could include choosing a different model architecture, adding or taking away layers (pooling, dropout, convolution, etc), using an activation function or changing the activation function. One common justification for adjusting an architecture would be due to overfitting or underfitting. A high accuracy on the training set but low accuracy on the validation set indicates over fitting; a low accuracy on both sets indicates under fitting.
-* Which parameters were tuned? How were they adjusted and why?
-* What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model?
+Starting for LeNet's reference implementation the accuracy was
+consistently limited under 90%, and the breakthrough in my experiments
+came when I significantly increased the number of convolutional filters
+in the first convolutional layer.
 
-If a well known architecture was chosen:
-* What architecture was chosen?
-* Why did you believe it would be relevant to the traffic sign application?
-* How does the final model's accuracy on the training, validation and test set provide evidence that the model is working well?
+The second major improvement came from adding more fully connected
+layers at the back-end fo the network, and expanding the size of the
+existing ones, again to match the number of traffic sign classes.
  
 
 ## Test the model on new images
