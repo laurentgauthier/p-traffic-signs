@@ -40,8 +40,7 @@ The goals / steps of this project were the following:
 [image03]: ./images/validation-classes-histogram.png "Histogram of traffic sign classes from the validation dataset"
 [image04]: ./images/test-classes-histogram.png       "Histogram of traffic sign classes from the test dataset"
 
-[image05]: ./images/before-normalization.png  "Traffic signs before normalization"
-[image06]: ./images/after-normalization.png   "Traffic signs after normalization"
+[image05]: ./images/pre-processed.png  "Traffic signs pre-processed"
 
 ## Data Set Summary & Exploration
 
@@ -59,14 +58,14 @@ signs data set:
 
 ### Visualization
 
-In order to visualize the data set I visualized some random signs in order to get
-a feel for what the images looked like. Every time the code is run it shows
-different images:
+In order to visualize the data set I visualized some random signs in order
+to get a feel for what the images looked like. Every time the code is run
+it shows different images:
 
 ![Random Traffic signs][image01]
 
-Also for each of the training, validation and test sets I used histogram to check
-the breakdown in various classes of traffic signs:
+Also for each of the training, validation and test sets I used histogram to
+check the breakdown in various classes of traffic signs:
 
 ![Histogram of traffic sign classes from the training dataset][image02]
 
@@ -79,11 +78,11 @@ the breakdown in various classes of traffic signs:
 
 ### Image pre-processing
 
-As a first step, I decided to convert the images to grayscale and apply some
-form of histogram equalization.
+As a first step, the images are converted to grayscale and some form
+of histogram equalization is applied.
 
-The thinking behind that decision was based on the fact that the data set
-included images that were showing quite different characteristics:
+The thinking behind that decision was based on the fact that the data
+set included images that were showing quite different characteristics:
 
 * dark images with low contrast
 * bright images with low contrast
@@ -91,24 +90,24 @@ included images that were showing quite different characteristics:
 * images with a low saturation
 * images with a high saturation
 
-So in order to normalize I pre-processed the images as follows:
+The images are pre-processed as follows:
 
 * Convert RGB image to greyscale.
 * Histogram equalization using OpenCV's CLAHE functionality (Contrast
   Limited Adaptive Histogram Equalization).
 
-Here are some examples of traffic sign images before and after grayscaling.
+Here are some examples of traffic sign images after grayscaling
+and histogram equalization:
 
-![Before normalization][image05]
+![After pre-processing][image05]
 
-![After normalization][image06]
-
-As a last step, I normalized the image data in order to bring the range of
+As a last step, the image data is normalized in order to bring the range of
 pixel values in the -1.0, +1.0 range, and try to get an average that is close
 to zero.
 
-This is known to help with the numerical stability and the speed of convergence
+This helps with the numerical stability of the algoriths and the convergence
 of the learning process.
+
 
 ### Data set augmentation
 
@@ -125,18 +124,19 @@ The difference between the original data set and the augmented data set is the f
 
 ### Model architecture
 
-For the model I started my work from the LeNet model, and expanded from there
-until I got results that met the requirements.
+For the model I started from the LeNet model, and evolved from there until
+I got results that met the requirements.
 
-I selected the LeNet model as it has shown great success doing classification
-of greyscale images.
+The LeNet model was selected as a basis for my work as it has shown great
+success doing classification of greyscale images.
 
-LeNet had been designed to classify images in 10 classes, where the traffic
-sign dataset has 43 classes, so it was quite obvious from the beginning that
-some key dimensions of the model would have to be evolved to reach the
-required classification performance.
+However LeNet had been designed to classify images in 10 classes, where
+the traffic sign dataset has 43 classes.
 
-My final model consisted of the following layers:
+It was quite obvious that some key parameters of the model would have
+to be evolved to reach the required classification performance.
+
+The final model consists of the following layers:
 
 | Layer                 |     Description                               |
 |:---------------------:|:---------------------------------------------:|
@@ -161,14 +161,19 @@ My final model consisted of the following layers:
 
 ### Model training
 
-To train the model, I used an Adam optimizer with a batch size of 32 for 20 epochs.
+To train the model, the following were used:
 
-My final model results were:
+* an Adam optimizer
+* a batch size of 32
+* for 20 epochs
+
+The final model accuracy results were:
+
 * validation set accuracy of 95.2%
 * test set accuracy of 94.9%
 
-To break the glass ceiling sitting at around 90% of accuracy the following
-adjustments appear to have been critical:
+To break the glass ceiling sitting at around 90% of accuracy the
+following adjustments appear to have been critical:
 
 Getting to this has been quite a learning experience as it took me
 hundreds of experiments to start gaining an understanding of which
@@ -208,10 +213,11 @@ sure for nightly shots to take some pictures with flash enabled.
 In total I gathered pictures of 20 traffic signs which I cropped and
 resized to the expected 32x32x3 image size using Gimp and ImageMagick.
 
-No other processing was done on the images.
+No further processing was done on the images.
 
 **NOTE**: Some of these traffic signs are not falling in any of the 43
 traffic signs classes present in the dataset.
+
 
 ### Model predictions
 
@@ -228,6 +234,7 @@ Here are the results of the prediction:
 The model was able to correctly guess 4 of the 5 traffic signs, which gives
 an accuracy of 80%. This compares favorably to the accuracy on the test set
 of ...
+
 
 ### Prediction probabilities
 
