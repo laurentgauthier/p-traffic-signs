@@ -101,26 +101,30 @@ and histogram equalization:
 
 ![After pre-processing][image05]
 
-As a last step, the image data is normalized in order to bring the range of
-pixel values in the -1.0, +1.0 range, and try to get an average that is close
+Finally the image data is normalized in order to bring the range of pixel
+values in the -1.0, +1.0 range, and try to get an average that is close
 to zero.
 
-This helps with the numerical stability of the algoriths and the convergence
-of the learning process.
+This last step helps with the numerical stability of the algorithms and the
+convergence of the learning process.
 
 
 ### Data set augmentation
 
-I decided to generate additional data because ... 
+No data set augmentation was done in the course of this work for lack of
+time, but here are a few ideas to be considered.
 
-To add more data to the the data set, I used the following techniques because ... 
+Data set augmentation can be helpful in this exercise for the following:
 
-Here is an example of an original image and an augmented image:
+* Compensate the imbalance in number of samples for each traffic sign classes
+* Make the resulting model less sensitive to changes in scale
+* Make the resulting model less sensitive to rotation
 
-![alt text][image3]
+The techniques to be used would involve using exisiting images as input
+and applying the following operations to them:
 
-The difference between the original data set and the augmented data set is the following ... 
-
+* Create slightly zoomed in and zoomed out copies
+* Create randomly rotated images, with a few degrees of rotation range
 
 ### Model architecture
 
