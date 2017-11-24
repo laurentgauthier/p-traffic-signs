@@ -7,12 +7,10 @@ The work for this project was done in a Jupyter notebook which
 
 The goals / steps of this project were the following:
 
-* Load the data set (see below for links to the project data set)
 * Explore, summarize and visualize the data set
 * Design, train and test a model architecture
 * Use the model to make predictions on new images
 * Analyze the softmax probabilities of the new images
-* Summarize the results with a written report
 
 [//]: # (Image References)
 
@@ -42,6 +40,9 @@ The goals / steps of this project were the following:
 [image03]: ./images/validation-classes-histogram.png "Histogram of traffic sign classes from the validation dataset"
 [image04]: ./images/test-classes-histogram.png       "Histogram of traffic sign classes from the test dataset"
 
+[image05]: ./images/before-normalization.png  "Traffic signs before normalization"
+[image06]: ./images/after-normalization.png   "Traffic signs after normalization"
+
 ## Data Set Summary & Exploration
 
 ### Dataset size
@@ -54,6 +55,7 @@ signs data set:
 * The size of test set is 34799
 * The shape of a traffic sign image is 32x32x3
 * There are 43 unique classes/labels in the data set
+
 
 ### Visualization
 
@@ -72,17 +74,43 @@ the breakdown in various classes of traffic signs:
 
 ![Histogram of traffic sign classes from the test dataset][image04]
 
+
 ## Design and Test a Model Architecture
 
 ### Image pre-processing
 
-As a first step, I decided to convert the images to grayscale because ...
+As a first step, I decided to convert the images to grayscale and apply some
+form of histogram equalization.
 
-Here is an example of a traffic sign image before and after grayscaling.
+The thinking behind that decision was based on the fact that the data set
+included images that were showing quite different characteristics:
 
-![alt text][image2]
+* dark images with low contrast
+* bright images with low contrast
+* images with high contrast
+* images with a low saturation
+* images with a high saturation
 
-As a last step, I normalized the image data because ...
+So in order to normalize I pre-processed the images as follows:
+
+* Convert RGB image to greyscale.
+* Histogram equalization using OpenCV's CLAHE functionality (Contrast
+  Limited Adaptive Histogram Equalization).
+
+Here are some examples of traffic sign images before and after grayscaling.
+
+![Before normalization][image05]
+
+![After normalization][image06]
+
+As a last step, I normalized the image data in order to bring the range of
+pixel values in the -1.0, +1.0 range, and try to get an average that is close
+to zero.
+
+This is known to help with the numerical stability and the speed of convergence
+of the learning process.
+
+### Data set augmentation
 
 I decided to generate additional data because ... 
 
@@ -100,45 +128,51 @@ The difference between the original data set and the augmented data set is the f
 For the model I started my work from the LeNet model, and expanded from there
 until I got results that met the requirements.
 
+I selected the LeNet model as it has shown great success doing classification
+of greyscale images.
+
+LeNet had been designed to classify images in 10 classes, where the traffic
+sign dataset has 43 classes, so it was quite obvious from the beginning that
+some key dimensions of the model would have to be evolved to reach the
+required classification performance.
+
 My final model consisted of the following layers:
 
 | Layer                 |     Description                               |
 |:---------------------:|:---------------------------------------------:|
-| Input                 | 32x32x3 RGB image                             |
-| Convolution 3x3       | 1x1 stride, same padding, outputs 32x32x64    |
+| Input                 | 32x32x1 Greyscale normalized image            |
+| Convolution 3x3       | 1x1 stride, same padding, outputs 28x28x108   |
 | RELU                  |                                               |
-| Max pooling           | 2x2 stride,  outputs 16x16x64                 |
-| Convolution 3x3       | etc.                                          |
-| Fully connected       | etc.                                          |
-| Softmax               | etc.                                          |
-|                       |                                               |
-|                       |                                               |
-
-Getting to this has been quite a learning experience as it took me
-hundreds of experiments to start gaining an understanding of which
-parameters really drove the model performance.
-
-I have experimented with the hyper-parameters such as:
-
-* learning rate
-* batch size
-* 
-
-While this consituted an interesting piece of exploration these experiments
-were not the key to solving this classification problem.
-
-To break the glass ceiling sitting at around 90% of accuracy the following
-adjustments appear to have been critical:
+| Average pooling       | 2x2 stride,  outputs 14x14x108                |
+| Convolution 3x3       | 1x1 stride, same padding, outputs 10x10x200   |
+| RELU                  |                                               |
+| Average pooling       | 2x2 stride,  outputs 5x5x200                  |
+| Fully connected       | 5000 (result of flattening the previous)      |
+| RELU                  |                                               |
+| Fully connected       | 800                                           |
+| RELU                  |                                               |
+| Fully connected       | 400                                           |
+| RELU                  |                                               |
+| Fully connected       | 200                                           |
+| RELU                  |                                               |
+| Fully connected       | 43                                            |
+| Softmax               |                                               |
 
 
 ### Model training
 
-To train the model, I used an ....
+To train the model, I used an Adam optimizer with a batch size of 32 for 20 epochs.
 
 My final model results were:
-* training set accuracy of ?
-* validation set accuracy of ? 
-* test set accuracy of ?
+* validation set accuracy of 95.2%
+* test set accuracy of 94.9%
+
+To break the glass ceiling sitting at around 90% of accuracy the following
+adjustments appear to have been critical:
+
+Getting to this has been quite a learning experience as it took me
+hundreds of experiments to start gaining an understanding of which
+parameters really drove the model performance.
 
 If an iterative approach was chosen:
 * What was the first architecture that was tried and why was it chosen?
@@ -157,11 +191,11 @@ If a well known architecture was chosen:
 
 ### Data collection
 
-As I work in Germany I took the opportunity of my morning and evening walks to and from work to
-take some pictures using my cell phone.
+As I work in Germany I took the opportunity of my morning and evening walks
+to and from work to take some pictures using my cell phone.
 
-As can be noticed below the lighting conditions do vary greatly and I made sure for noghtly shot
-to take some pictures with flash enabled.
+As can be noticed below the lighting conditions do vary greatly and I made
+sure for nightly shots to take some pictures with flash enabled.
 
 ![alt text][sign01] ![alt text][sign02] ![alt text][sign03] ![alt text][sign04] ![alt text][sign05] 
 
@@ -171,10 +205,13 @@ to take some pictures with flash enabled.
 
 ![alt text][sign16] ![alt text][sign17] ![alt text][sign18] ![alt text][sign19] ![alt text][sign20] 
 
-In total I gathered pictures of 20 traffic signs which I cropped and resized to the expected 32x32x3
-image size using Gimp and ImageMagick. No other processing was done on the images.
+In total I gathered pictures of 20 traffic signs which I cropped and
+resized to the expected 32x32x3 image size using Gimp and ImageMagick.
 
-Some of these traffic signs are not matching any of the 43 traffic signs classes present in the dataset.
+No other processing was done on the images.
+
+**NOTE**: Some of these traffic signs are not falling in any of the 43
+traffic signs classes present in the dataset.
 
 ### Model predictions
 
@@ -188,13 +225,21 @@ Here are the results of the prediction:
 | 100 km/h              | Bumpy Road                                    |
 | Slippery Road         | Slippery Road                                 |
 
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
+The model was able to correctly guess 4 of the 5 traffic signs, which gives
+an accuracy of 80%. This compares favorably to the accuracy on the test set
+of ...
 
 ### Prediction probabilities
 
-The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
+The code for making predictions on my final model is located in the 11th
+cell of the Ipython notebook.
 
-For the first image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
+#### First image
+
+For the first image, the model is relatively sure that this is a stop sign
+(probability of 0.6), and the image does contain a stop sign.
+
+The top five soft max probabilities were:
 
 | Probability           |     Prediction                                |
 |:---------------------:|:---------------------------------------------:|
