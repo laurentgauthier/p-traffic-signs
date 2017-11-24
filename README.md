@@ -2,7 +2,8 @@
 
 ## Overview
 
-The work for this project was done using using a Jupyter notebook and [can be reviewed directly from this github repository](https://github.com/laurentgauthier/p-traffic-signs/blob/master/Traffic_Sign_Classifier.ipynb).
+The work for this project was done in a Jupyter notebook which
+[can be reviewed here](https://github.com/laurentgauthier/p-traffic-signs/blob/master/Traffic_Sign_Classifier.ipynb).
 
 The goals / steps of this project were the following:
 
@@ -36,6 +37,10 @@ The goals / steps of this project were the following:
 [sign19]: ./personal-photos/traffic-sign-19.png "Traffic Sign 19"
 [sign20]: ./personal-photos/traffic-sign-20.png "Traffic Sign 20"
 
+[image01]: ./images/random-traffic-signs.png         "Random traffic signs"
+[image02]: ./images/training-classes-histogram.png   "Histogram of traffic sign classes from the training dataset"
+[image03]: ./images/validation-classes-histogram.png "Histogram of traffic sign classes from the validation dataset"
+[image04]: ./images/test-classes-histogram.png       "Histogram of traffic sign classes from the test dataset"
 
 ## Data Set Summary & Exploration
 
@@ -44,17 +49,28 @@ The goals / steps of this project were the following:
 I used the pandas library to calculate summary statistics of the traffic
 signs data set:
 
-* The size of training set is ?
-* The size of the validation set is ?
-* The size of test set is ?
+* The size of training set is 12630
+* The size of the validation set is 4410
+* The size of test set is 34799
 * The shape of a traffic sign image is 32x32x3
 * There are 43 unique classes/labels in the data set
 
 ### Visualization
 
-Here is an exploratory visualization of the data set. It is a bar chart showing how the data ...
+In order to visualize the data set I visualized some random signs in order to get
+a feel for what the images looked like. Every time the code is run it shows
+different images:
 
-![alt text][image1]
+![Random Traffic signs][image01]
+
+Also for each of the training, validation and test sets I used histogram to check
+the breakdown in various classes of traffic signs:
+
+![Histogram of traffic sign classes from the training dataset][image02]
+
+![Histogram of traffic sign classes from the validation dataset][image03]
+
+![Histogram of traffic sign classes from the test dataset][image04]
 
 ## Design and Test a Model Architecture
 
@@ -81,6 +97,9 @@ The difference between the original data set and the augmented data set is the f
 
 ### Model architecture
 
+For the model I started my work from the LeNet model, and expanded from there
+until I got results that met the requirements.
+
 My final model consisted of the following layers:
 
 | Layer                 |     Description                               |
@@ -94,6 +113,22 @@ My final model consisted of the following layers:
 | Softmax               | etc.                                          |
 |                       |                                               |
 |                       |                                               |
+
+Getting to this has been quite a learning experience as it took me
+hundreds of experiments to start gaining an understanding of which
+parameters really drove the model performance.
+
+I have experimented with the hyper-parameters such as:
+
+* learning rate
+* batch size
+* 
+
+While this consituted an interesting piece of exploration these experiments
+were not the key to solving this classification problem.
+
+To break the glass ceiling sitting at around 90% of accuracy the following
+adjustments appear to have been critical:
 
 
 ### Model training
@@ -122,7 +157,7 @@ If a well known architecture was chosen:
 
 ### Data collection
 
-As I work in Germany I took the opportunity of my morning and evening walks from and to work to
+As I work in Germany I took the opportunity of my morning and evening walks to and from work to
 take some pictures using my cell phone.
 
 As can be noticed below the lighting conditions do vary greatly and I made sure for noghtly shot
