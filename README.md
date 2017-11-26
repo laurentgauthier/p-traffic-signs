@@ -42,6 +42,12 @@ The goals / steps of this project were the following:
 
 [image05]: ./images/pre-processed.png  "Traffic signs pre-processed"
 
+[example01]: .images/example-01.png    "First example image"
+[example02]: .images/example-02.png    "Second example image"
+[example03]: .images/example-03.png    "Third example image"
+[example04]: .images/example-04.png    "Fourth example image"
+[example05]: .images/example-05.png    "Fifth example image"
+
 ## Data Set Summary & Exploration
 
 ### Dataset size
@@ -150,10 +156,10 @@ The final model consists of the following layers:
 | Layer                 |     Description                               |
 |:---------------------:|:---------------------------------------------:|
 | Input                 | 32x32x1 Greyscale normalized image            |
-| Convolution 3x3       | 1x1 stride, same padding, outputs 28x28x108   |
+| Convolution 3x3       | 1x1 stride, valid padding, outputs 28x28x108  |
 | RELU                  |                                               |
 | Average pooling       | 2x2 stride,  outputs 14x14x108                |
-| Convolution 3x3       | 1x1 stride, same padding, outputs 10x10x200   |
+| Convolution 3x3       | 1x1 stride, valid padding, outputs 10x10x200  |
 | RELU                  |                                               |
 | Average pooling       | 2x2 stride,  outputs 5x5x200                  |
 | Fully connected       | 5000 (result of flattening the previous)      |
@@ -174,12 +180,12 @@ To train the model, the following were used:
 
 * an Adam optimizer
 * a batch size of 32
-* for 20 epochs
+* for 10 epochs
 
 The final model accuracy results were:
 
-* validation set accuracy of 95.2%
-* test set accuracy of 94.9%
+* validation set accuracy of 94.8%
+* test set accuracy of 93.2%
 
 To break the glass ceiling sitting at around 90% of accuracy the
 following adjustments appear to have been critical:
@@ -255,18 +261,88 @@ cell of the Ipython notebook.
 
 #### First image
 
-For the first image, the model is relatively sure that this is a stop sign
-(probability of 0.6), and the image does contain a stop sign.
+For this image, the model is absolutely sure that this is a keep right sign
+(probability of 1.0), and the image does contain a keep right sign.
+
+![alt text][example01]
 
 The top five soft max probabilities were:
 
-| Probability           |     Prediction                                |
-|:---------------------:|:---------------------------------------------:|
-| .60                   | Stop sign                                     |
-| .20                   | U-turn                                        |
-| .05                   | Yield                                         |
-| .04                   | Bumpy Road                                    |
-| .01                   | Slippery Road                                 |
+| Prediction            |    Probability   |
+|:---------------------:|:----------------:|
+| Keep right            | 1.000000         |
+| Go straight or right  | 0.000000         |
+| Turn left ahead       | 0.000000         |
+| Traffic signals       | 0.000000         |
+| Stop                  | 0.000000         |
 
-For the second image ... 
+#### Second image
 
+For this image, the model is relatively sure that this is a turn right
+ahead sign (probability of 0.88), but the image does contain a stop sign.
+
+The second probability (0.11) though is for a stop sign.
+
+![alt text][example02]
+
+The top five soft max probabilities were:
+
+| Prediction            |    Probability   |
+|:---------------------:|:----------------:|
+| Turn right ahead      | 0.879465         |
+| Stop                  | 0.113910         |
+| General caution       | 0.006159         |
+| Go straight or right  | 0.000104         |
+| Traffic signals       | 0.000065         |
+
+#### Third image
+
+For this image, the model is absolutely sure that this is a yield sign
+(probability of 1.0), and the image does contain a yield sign.
+
+![alt text][example03]
+
+The top five soft max probabilities were:
+
+| Prediction            |    Probability   |
+|:---------------------:|:----------------:|
+| Yield                 | 1.000000         |
+| Priority road         | 0.000000         |
+| Roundabout mandatory  | 0.000000         |
+| Go straight or left   | 0.000000         |
+| Speed limit (100km/h) | 0.000000         |
+
+#### Fourth image
+
+For this image, the model is relatively sure that this is a roundabout
+mandatory sign (probability of 0.999362), and the image does contain
+a roundabout sign.
+
+![alt text][example04]
+
+The top five soft max probabilities were:
+
+| Prediction            |    Probability   |
+|:---------------------:|:----------------:|
+| Roundabout mandatory  | 0.999362         |
+| Speed limit (30km/h)  | 0.000211         |
+| Speed limit (100km/h) | 0.000128         |
+| Vehicles over 3.5 metric tons prohibited    | 0.000091 |
+| Speed limit (80km/h)  | 0.000071         |
+
+#### Fifth image
+
+For this image, the model is absolutely sure that this is a stop sign
+(probability of 0.999998), and the image does contain a stop sign.
+
+![alt text][example05]
+
+The top five soft max probabilities were:
+
+| Prediction            |    Probability   |
+|:---------------------:|:----------------:|
+| Stop                  | 0.999998         |
+| Go straight or right  | 0.000000         |
+| Keep right            | 0.000000         |
+| No vehicles           | 0.000000         |
+| Turn right ahead      | 0.000000         |
