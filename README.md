@@ -42,11 +42,11 @@ The goals / steps of this project were the following:
 
 [image05]: ./images/pre-processed.png  "Traffic signs pre-processed"
 
-[example01]: .images/example-01.png    "First example image"
-[example02]: .images/example-02.png    "Second example image"
-[example03]: .images/example-03.png    "Third example image"
-[example04]: .images/example-04.png    "Fourth example image"
-[example05]: .images/example-05.png    "Fifth example image"
+[example01]: ./images/example-01.png    "First example image"
+[example02]: ./images/example-02.png    "Second example image"
+[example03]: ./images/example-03.png    "Third example image"
+[example04]: ./images/example-04.png    "Fourth example image"
+[example05]: ./images/example-05.png    "Fifth example image"
 
 ## Data Set Summary & Exploration
 
